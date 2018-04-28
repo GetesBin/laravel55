@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('hello',function(){
-    return 'Hello World!';
-});
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,3 +18,7 @@ Route::get('/adduser', function () {
     return view("Admin.adduser");
 });
 Route::post('/submit/adduser', 'Admin\AdminController@adduser');
+Route::get('/deleteuser/{id}', 'Admin\AdminController@deleteuser');
+Route::get('/updateuser/{id}','Admin\AdminController@updatauser');
+Route::post('/submit/saveUpdateuser','Admin\AdminController@saveUpdateuser');
+

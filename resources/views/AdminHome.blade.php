@@ -59,11 +59,20 @@
 <body>
 <center>
     <h1><p>laravel - Admin</p></h1>
-    @foreach($users as $val)
-        <h3>{{$val->name}}</h3>
-    @endforeach
-
     <a href="{{url('/adduser')}}">添加人员</a>
+    <table>
+        @foreach($users as $val)
+            <tr>
+                <th><h3>用户名:</h3></th>
+                <td><h3>{{$val->name}}</h3></td>
+                <th><h3>密 码:</h3></th>
+                <td><h3>{{$val->password}}</h3></td>
+                <th>操作:</th>
+                <td><a href="/deleteuser/{{$val->id}}">删除</a></td>
+                <td><a href="/updateuser/{{$val->id}}">修改</a></td>
+            </tr>
+        @endforeach
+    </table>
     {{--<h2>{{ $content }}}</h2>--}}
 </center>
 </body>

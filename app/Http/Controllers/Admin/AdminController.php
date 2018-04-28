@@ -21,10 +21,34 @@ class AdminController extends Controller
     public function adduser()
     {
         $status = DB::table('laravel55_user')->insert(
-            ['name' => $_POST['name'], 'age' => $_POST['age']]
+            ['name' => $_POST['name'], 'password' => $_POST['password']]
         );
+        if ($status) {
+            return redirect('/Admin');
+        }
+    }
+
+    public function deleteuser($id)
+    {
+        $status = DB::table('laravel55_user')->where('id', '=', $id)->delete();
+        if ($status) {
+            return redirect("/Admin");
+        }
+    }
+
+    public function updatauser($id)
+    {
+        $info = DB::table('laravel55_user')->where('id',$id)->get();
+        return view('Admin.adduser',['id'=>$id,'info'=>$info]);
+    }
+
+    public function saveUpdateuser()
+    {
+        $status = DB::table('laravel55_user')
+            ->where('id',$_POST['id'])
+            ->update(array('name'=>$_POST['name'],'password'=>$_POST['password']));
         if($status){
-            return back();
+            return redirect('/Admin');
         }
     }
 }
