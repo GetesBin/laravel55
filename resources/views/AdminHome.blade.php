@@ -55,24 +55,38 @@
             margin-bottom: 30px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
 <center>
     <h1><p>laravel - Admin</p></h1>
+    <a href="{{url('/')}}">首 页</a><span color="black"> | </span>
     <a href="{{url('/adduser')}}">添加人员</a>
-    <table>
-        @foreach($users as $val)
-            <tr>
-                <th><h3>用户名:</h3></th>
-                <td><h3>{{$val->name}}</h3></td>
-                <th><h3>密 码:</h3></th>
-                <td><h3>{{$val->password}}</h3></td>
-                <th>操作:</th>
-                <td><a href="/deleteuser/{{$val->id}}">删除</a></td>
-                <td><a href="/updateuser/{{$val->id}}">修改</a></td>
-            </tr>
-        @endforeach
-    </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">用户名:</th>
+      <th scope="col">密  码:</th>
+      <th scope="col">操  作:</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($users as $key=>$val)
+    <tr>
+      <th scope="row">{{$key +1}}</th>
+      <td>{{$val->name}}</td>
+      <td>{{$val->password}}</td>
+      <td>
+        <a class="btn btn-outline-danger" href="/deleteuser/{{$val->id}}">删除</a>
+        <a class="btn btn-outline-info" href="/updateuser/{{$val->id}}">修改</a>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+
     {{--<h2>{{ $content }}}</h2>--}}
 </center>
 </body>
