@@ -28,16 +28,17 @@ class HomeController extends Controller
 	/*
 	*登录验证及存储
 	*/
-	public function loginAdd()
+	public function loginAdd(Request $request)
 	{
 		$name = $_POST['name'];
 		$password = $_POST['password'];
-
-		if (Auth::attempt(['name' => $name, 'password' => $password])) {
-            // 认证通过...
-            echo 1;
-        }else{
-        	echo 2;
+		$status = DB::table('laravel55_user')->where([
+			['name',"=",$name],
+			['password',"=",$password],
+		])->pluck("id");
+	
+		if (!empty($status[0])) {
+            
         }
 
 
