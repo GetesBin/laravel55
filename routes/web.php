@@ -51,3 +51,15 @@ Route::get('/Home/login','Home\HomeController@login');
 *跳转至登录保存用户id方法
 */
 Route::post('/Home/login-add','Home\HomeController@loginAdd');
+/*
+*退出
+*/
+Route::get('/Home/out','Home\HomeController@out');
+/*
+*注册
+*/
+Route::get('/Home/singUp','Home\HomeController@singUp');
+/*
+*执行注册
+*/
+Route::post('/Home/addSingUp','Home\HomeController@addSingUp');
