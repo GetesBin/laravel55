@@ -63,3 +63,7 @@ Route::get('/Home/singUp','Home\HomeController@singUp');
 *执行注册
 */
 Route::post('/Home/addSingUp','Home\HomeController@addSingUp');
+/*
+*提交注册码
+*/
+Route::post('/Home/addSingUp_2','Home\HomeController@addSingUp_2');

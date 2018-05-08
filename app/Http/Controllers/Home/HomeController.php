@@ -37,7 +37,7 @@ class HomeController extends Controller
 	public function loginAdd(Request $request)
 	{
 		$name = $_POST['name'];
-		$password = $_POST['password'];
+		$password = md5($_POST['password']);
 		$status = DB::table('laravel55_user')->where([
 			['name',"=",$name],
 			['password',"=",$password],
@@ -73,23 +73,44 @@ class HomeController extends Controller
 	}
 	/*
 	*执行注册
+	*发送验证码:smtp
+	*str_random 生成参数个位的字符串
 	*/
 	public function addSingUp(Request $request)
 	{
 		$name = 'GatesBin';
-        // $flag = Mail::send('emails.test',['name'=>$name],function($message){  
-        //     $to = $_POST['name'];  
-        //     $message ->to($to)->subject('测试邮件');  
-        // });
-       	$flag = Mail::send('emails.test', array('key' => 'value'), function($message)
-		{
-		    $message->to($_POST['name'],'GatesBin')->subject('Welcome!');
-		});  
-        if($flag){  
-            echo '发送邮件成功，请查收！';  
-        }else{  
-            echo '发送邮件失败，请重试！';  
-        }  
+		$code = str_random(6);
+		// dd($code);
+		$info = DB::table("laravel55_user")->where(['name'=>$_POST['name']])->pluck('id');
+		if(!isset($info[0])){
+			$data = array("code"=>$code,'mail'=>$_POST['name']);
+	       	$flag = Mail::send('emails.test', $data, function($message)
+			{
+			    $message->to($_POST['name'],'GatesBin')->subject('GatesBin网站注册码');
+			});
+		}else{
+			echo "<script>alert('此邮箱已注册');window.location.href='/Home/singUp'</script>";
+		}
+		return view("Home/singUp-2",['code'=>$code,'mail'=>$_POST['name'],'password'=>$_POST['password']]);
+        //$flag 一直都是null 无法判断 
+        // return view("emails.test",['code'=>$code,'mail'=>$_POST['name']]);
 	}
-
+	/*
+	*提交注册码
+	*如注册码正确则直接写入数据库 
+	*密码格式:md5(密码)
+	*/
+	public function addSingUp_2()
+	{
+		$password = md5($_POST['password']);
+		$arr = array('name'=>$_POST['name'],'password'=>$password);
+		if($_POST['registrationcode'] == $_POST['code']){
+			$status = DB::table("laravel55_user")->insert($arr);
+			if($status){
+				echo "<script>alert('注册成功,正在移动至登录');window.location.href='/Home'</script>";
+			}
+		}else{
+			echo "<script>alert('注册码不正确');window.location.href='/Home/singUp'</script>";
+		}
+	}
 }
