@@ -66,7 +66,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/Home/login">登录</a>
           <a class="dropdown-item" href="/Home/singUp">注册</a>
-          <a class="dropdown-item" href="/Home/mySelf">个人信息</a>
+          <a class="dropdown-item" href="/Home/test">个人信息</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/Home/out">退出</a>
         </div>
@@ -84,6 +84,7 @@
 
 @yield("Home.login")
 @yield("Home.singUp")
+@yield("Home.wx")
   <script  src="/public/js/jquery.min.js"></script>
   <script  src="/public/js/dmaku.js"></script>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

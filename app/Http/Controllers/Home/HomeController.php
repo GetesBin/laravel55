@@ -84,7 +84,7 @@ class HomeController extends Controller
 		$info = DB::table("laravel55_user")->where(['name'=>$_POST['name']])->pluck('id');
 		if(!isset($info[0])){
 			$data = array("code"=>$code,'mail'=>$_POST['name']);
-	       	$flag = Mail::send('emails.test', $data, function($message)
+	       	$flag = Mail::send('emails.email', $data, function($message)
 			{
 			    $message->to($_POST['name'],'GatesBin')->subject('GatesBin网站注册码');
 			});
@@ -112,5 +112,15 @@ class HomeController extends Controller
 		}else{
 			echo "<script>alert('注册码不正确');window.location.href='/Home/singUp'</script>";
 		}
+	}
+	/*
+	*调用wx页面
+	*/
+	public function wx()
+	{
+		return view("Home.wx");
+	}
+	public function test(){
+		return view("Home.test");
 	}
 }

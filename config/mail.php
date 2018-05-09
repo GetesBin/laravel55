@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.163.com'),
+    'host' => env('MAIL_HOST', 'smtp.qq.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'GatesBin@163.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'GatesBin@qq.com'),
         'name' => env('MAIL_FROM_NAME', 'GatesBin'),
     ],
 
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME','GatesBin@163.com'),
+    'username' => env('MAIL_USERNAME','gatesbin@qq.com'),
 
-    'password' => env('MAIL_PASSWORD','xsm0827'),
+    'password' => env('MAIL_PASSWORD','wrwhbmoizyscbehi'),
 
     /*
     |--------------------------------------------------------------------------

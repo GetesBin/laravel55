@@ -67,3 +67,11 @@ Route::post('/Home/addSingUp','Home\HomeController@addSingUp');
 *提交注册码
 */
 Route::post('/Home/addSingUp_2','Home\HomeController@addSingUp_2');
+/*
+*wx页面
+*/
+Route::get('/Home/wx','Home\HomeController@wx');
+/*
+*test
+*/
+Route::get('/Home/test','Home\HomeController@test');
